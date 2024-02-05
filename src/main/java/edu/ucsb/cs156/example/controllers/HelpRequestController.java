@@ -46,11 +46,11 @@ public class HelpRequestController extends ApiController {
     @Operation(summary= "Create a help request")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
-    public HelpRequest postUCSBDate(
+    public HelpRequest postHelpRequest(
             @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
             @Parameter(name="teamId") @RequestParam String teamId,
             @Parameter(name="tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
-            @Parameter(name="requestTime", description = "in iso format, e.g. YYYY-mm-ddTHH:MM") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
+            @Parameter(name="requestTime", description = "Date in iso format, e.g. YYYY-mm-ddTHH:MM") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime,
             @Parameter(name="explanation") @RequestParam String explanation,
             @Parameter(name="solved") @RequestParam boolean solved)
             throws JsonProcessingException {
@@ -88,7 +88,7 @@ public class HelpRequestController extends ApiController {
     @Operation(summary= "Delete a help request")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
-    public Object deleteUCSBDate(
+    public Object deleteHelpRequest(
             @Parameter(name="id") @RequestParam Long id) {
         HelpRequest helpRequest = helpRequestRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
