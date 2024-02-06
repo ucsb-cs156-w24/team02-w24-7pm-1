@@ -47,7 +47,7 @@
                   },
                   {
                     "column": {
-                      "name": "TABLE_OR_BRERAKOUT_ROOM",
+                      "name": "TABLE_OR_BREAKOUT_ROOM",
                       "type": "VARCHAR(255)"
                     }
                   },
