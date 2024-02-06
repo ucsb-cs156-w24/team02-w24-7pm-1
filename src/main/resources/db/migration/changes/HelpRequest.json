@@ -35,25 +35,25 @@
                   },
                   {
                     "column": {
-                      "name": "REQUEST_EMAIL",
+                      "name": "REQUESTEMAIL",
                       "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                      "name": "TEAM_ID",
+                      "name": "TEAMID",
                       "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                      "name": "TABLE_OR_BRERAKOUT_ROOM",
+                      "name": "TABLEORBRERAKOUTROOM",
                       "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                      "name": "REQUEST_TIME",
+                      "name": "REQUESTTIME",
                       "type": "TIMESTAMP"
                     }
                   },
