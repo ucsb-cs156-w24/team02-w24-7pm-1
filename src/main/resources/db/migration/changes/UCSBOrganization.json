@@ -29,6 +29,12 @@
                   },
                   {
                     "column": {
+                      "name": "INACTIVE",
+                      "type": "BOOLEAN"
+                    }
+                  },
+                  {
+                    "column": {
                       "name": "ORG_TRANSLATION_SHORT",
                       "type": "VARCHAR(255)"
                     }
@@ -37,12 +43,6 @@
                     "column": {
                       "name": "ORG_TRANSLATION",
                       "type": "VARCHAR(255)"
-                    }
-                  },
-                  {
-                    "column": {
-                      "name": "INACTIVE",
-                      "type": "BOOLEAN"
                     }
                   }]
                 ,
