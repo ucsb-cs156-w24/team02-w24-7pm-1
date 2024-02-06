@@ -27,7 +27,7 @@
                       "autoIncrement": true,
                       "constraints": {
                         "primaryKey": true,
-                        "primaryKeyName": "CONSTRAINT_HR"
+                        "primaryKeyName": "CONSTRAINT_5"
                       },
                       "name": "ID",
                       "type": "BIGINT"
@@ -35,25 +35,25 @@
                   },
                   {
                     "column": {
-                      "name": "REQUESTER_EMAIL",
+                      "name": "REQUESTEREMAIL",
                       "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                      "name": "TEAM_ID",
+                      "name": "TEAMID",
                       "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                      "name": "TABLE_OR_BREAKOUT_ROOM",
+                      "name": "TABLEORBREAKOUTROOM",
                       "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                      "name": "REQUEST_TIME",
+                      "name": "REQUESTTIME",
                       "type": "TIMESTAMP"
                     }
                   },
