@@ -35,7 +35,7 @@
                   },
                   {
                     "column": {
-                      "name": "REQUEST_EMAIL",
+                      "name": "REQUESTER_EMAIL",
                       "type": "VARCHAR(255)"
                     }
                   },
