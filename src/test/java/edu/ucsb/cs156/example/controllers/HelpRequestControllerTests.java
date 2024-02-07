@@ -198,7 +198,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                 assertEquals("EntityNotFoundException", json.get("type"));
                 assertEquals("HelpRequest with id 7 not found", json.get("message"));
         }
-        /* 
+        
         // Tests for DELETE /api/helprequest?id=... 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
@@ -250,7 +250,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                 verify(helpRequestRepository, times(1)).findById(15L);
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("HelpRequest with id 15 not found", json.get("message"));
-        }*/
+        }
         // Tests for PUT /api/helprequest?id=... 
 
         @WithMockUser(roles = { "ADMIN", "USER" })
