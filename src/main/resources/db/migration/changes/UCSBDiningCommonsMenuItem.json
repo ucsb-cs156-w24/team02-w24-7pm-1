@@ -3,7 +3,7 @@
       {
         "changeSet": {
           "id": "UCSBDiningCommonsMenuItem-1",
-          "author": "MattP",
+          "author": "OwenP",
           "preConditions": [
             {
               "onFail": "MARK_RAN"
@@ -27,7 +27,7 @@
                       "autoIncrement": true,
                       "constraints": {
                         "primaryKey": true,
-                        "primaryKeyName": "CONSTRAINT_6"
+                        "primaryKeyName": "Creating_Table_For_UCSBDiningCommonsMenuItem"
                       },
                       "name": "ID",
                       "type": "BIGINT"
