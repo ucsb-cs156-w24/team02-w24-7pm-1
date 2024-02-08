@@ -38,7 +38,7 @@ public class UCSBDiningCommonsMenuItemController extends ApiController {
     @Autowired
     UCSBDiningCommonsMenuItemRepository ucsbDiningCommonsMenuItemRepository;
 
-    @Operation(summary= "List all ucsb dining commons menu items")
+    @Operation(summary= "List all UCSB Dining Commons menu items")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<UCSBDiningCommonsMenuItem> allUCSBDiningCommonsMenuItem() {
@@ -46,7 +46,7 @@ public class UCSBDiningCommonsMenuItemController extends ApiController {
         return UCSBDiningCommonsMenuItem;
     }
 
-    @Operation(summary= "Create a ucsb dining commons menu item")
+    @Operation(summary= "Create a UCSB Dining Commons menu item")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public UCSBDiningCommonsMenuItem postUCSBDiningCommonsMenuItem(
@@ -64,5 +64,16 @@ public class UCSBDiningCommonsMenuItemController extends ApiController {
         UCSBDiningCommonsMenuItem savedUcsbDiningCommonsMenuItem = ucsbDiningCommonsMenuItemRepository.save(ucsbDiningCommonsMenuItem);
 
         return savedUcsbDiningCommonsMenuItem;
+    }
+
+    @Operation(summary= "Get a single UCSB Dining Commons menu item")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("")
+    public UCSBDiningCommonsMenuItem getById(
+            @Parameter(name="id") @RequestParam Long id) {
+        UCSBDiningCommonsMenuItem ucsbDiningCommonsMenuItem = ucsbDiningCommonsMenuItemRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(UCSBDiningCommonsMenuItem.class, id));
+
+        return ucsbDiningCommonsMenuItem;
     }
 }
