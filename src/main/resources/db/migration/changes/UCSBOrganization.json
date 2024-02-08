@@ -1,8 +1,8 @@
 { "databaseChangeLog": [
     {
         "changeSet": {
-          "id": "UCSBOrganization-3",
-          "author": "MattP",
+          "id": "UCSBOrganization-10",
+          "author": "GretchenL",
           "preConditions": [
             {
               "onFail": "MARK_RAN"
@@ -23,46 +23,38 @@
                 "columns": [
                   {
                     "column": {
+                      "name": "ORG_CODE",
+                      "type": "VARCHAR(255)",
                       "constraints": {
-                        "primaryKey": true,
-                        "primaryKeyName": "CONSTRAINT_ORGANIZATIONS"
-                      },
-                      "name": "ORGCODE",
+                        "primaryKey": true
+                      }
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "ORG_TRANSLATION_SHORT",
                       "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                        "constraints": {
-                            "primaryKey": true
-                          },
-                      "name": "ORGTRANSLATIONSHORT",
+                      "name": "ORG_TRANSLATION",
                       "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                        "constraints": {
-                            "primaryKey": true
-                          },
-                      "name": "ORGTRANSLATION",
-                      "type": "VARCHAR(255)"
-                    }
-                  },
-                  {
-                    "column": {
+                      "name": "INACTIVE",
+                      "type": "BOOLEAN",
                       "constraints": {
                         "nullable": false
-                      },
-                      "name": "INACTIVE",
-                      "type": "BOOLEAN"
+                      }
                     }
-                  }
-                ]
+                  }]
                 ,
                 "tableName": "UCSBORGANIZATION"
               }
             }]
         }
-    }
-]}
+      }
+  ]}
