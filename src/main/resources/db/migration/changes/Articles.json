@@ -3,7 +3,7 @@
       {
         "changeSet": {
           "id": "Articles-1",
-          "author": "MattP",
+          "author": "LiamR",
           "preConditions": [
             {
               "onFail": "MARK_RAN"
@@ -27,7 +27,7 @@
                       "autoIncrement": true,
                       "constraints": {
                         "primaryKey": true,
-                        "primaryKeyName": "CONSTRAINT_7"
+                        "primaryKeyName": "CONSTRAINT_ARTICLES_CREATE_TABLE"
                       },
                       "name": "ID",
                       "type": "BIGINT"
