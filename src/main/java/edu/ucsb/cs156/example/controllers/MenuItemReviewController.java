@@ -38,7 +38,7 @@ public class MenuItemReviewController extends ApiController {
     @Autowired
     MenuItemReviewRepository menuItemReviewRepository;
 
-    @Operation(summary= "List all menu item reviews")
+    @Operation(summary= "List all Menu Item Reviews")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<MenuItemReview> allMenuItemReviews() {
@@ -46,7 +46,7 @@ public class MenuItemReviewController extends ApiController {
         return reviews;
     }
 
-    @Operation(summary= "Create a new menu item review")
+    @Operation(summary= "Create a new Menu Item Review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public MenuItemReview postMenuItemReview(
@@ -74,7 +74,7 @@ public class MenuItemReviewController extends ApiController {
         return savedmenuItemReview;
     }
 
-    @Operation(summary= "Get a single review")
+    @Operation(summary= "Get a single Menu Item Review")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
     public MenuItemReview getById(
@@ -85,7 +85,7 @@ public class MenuItemReviewController extends ApiController {
         return menuItemReview;
     }
 
-    @Operation(summary= "Delete a MenuItemReview")
+    @Operation(summary= "Delete a Menu Item Review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
     public Object deleteMenuItemReview(
@@ -95,6 +95,27 @@ public class MenuItemReviewController extends ApiController {
 
         menuItemReviewRepository.delete(menuItemReview);
         return genericMessage("MenuItemReview with id %s deleted".formatted(id));
+    }
+
+    @Operation(summary= "Update a single Menu Item Review")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("")
+    public MenuItemReview updateMenuItemReview(
+            @Parameter(name="id") @RequestParam Long id,
+            @RequestBody @Valid MenuItemReview incoming) {
+
+        MenuItemReview menuItemReview = menuItemReviewRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
+
+        menuItemReview.setItemId(incoming.getItemId());
+        menuItemReview.setReviewerEmail(incoming.getReviewerEmail());
+        menuItemReview.setStars(incoming.getStars());
+        menuItemReview.setDateReviewed(incoming.getDateReviewed());
+        menuItemReview.setComments(incoming.getComments());
+
+        menuItemReviewRepository.save(menuItemReview);
+
+        return menuItemReview;
     }
 
 }
