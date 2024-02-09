@@ -328,5 +328,68 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
             assertEquals("UCSBOrganization with id TASA not found", json.get("message"));
     }
 
-}
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void admin_can_post_inactive_organization() throws Exception {
+        // arrange
+        UCSBOrganization vsa = UCSBOrganization.builder()
+                .orgCode("VSA")
+                .orgTranslationShort("Viet Stu Assc")
+                .orgTranslation("Vietnamese Student Association")
+                .inactive(true)
+                .build();
 
+        when(ucsbOrganizationRepository.save(eq(vsa))).thenReturn(vsa);
+
+        // act
+        MvcResult response = mockMvc.perform(
+                post("/api/ucsborganization/post?orgCode=VSA&orgTranslationShort=Viet Stu Assc&orgTranslation=Vietnamese Student Association&inactive=true")
+                        .with(csrf()))
+                .andExpect(status().isOk()).andReturn();
+
+        // assert
+        verify(ucsbOrganizationRepository, times(1)).save(vsa);
+        String expectedJson = mapper.writeValueAsString(vsa);
+        String responseString = response.getResponse().getContentAsString();
+        assertEquals(expectedJson, responseString);
+        }
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void admin_can_update_orgcode() throws Exception {
+        // arrange
+
+        UCSBOrganization zetaPhiRhoOrig = UCSBOrganization.builder()
+        .orgCode("ZPR")
+        .orgTranslationShort("ZETA PHI RHO")
+        .orgTranslation("ZETA PHI RHO")
+        .inactive(false)
+        .build();
+
+        UCSBOrganization zetaPhiRhoEdited = UCSBOrganization.builder()
+                .orgCode("ZPRNEW")
+                .orgTranslationShort("ZETAS")
+                .orgTranslation("ZETA PHI RHOS")
+                .inactive(true)
+                .build();
+
+        String requestBody = mapper.writeValueAsString(zetaPhiRhoEdited);
+
+        when(ucsbOrganizationRepository.findById(eq("ZPR"))).thenReturn(Optional.of(zetaPhiRhoOrig));
+
+        // act
+        MvcResult response = mockMvc.perform(
+                put("/api/ucsborganization?orgCode=ZPR")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .characterEncoding("utf-8")
+                                .content(requestBody)
+                                .with(csrf()))
+                .andExpect(status().isOk()).andReturn();
+
+        // assert
+        verify(ucsbOrganizationRepository, times(1)).findById("ZPR");
+        verify(ucsbOrganizationRepository, times(1)).save(zetaPhiRhoEdited); // should be saved with updated info
+        String responseString = response.getResponse().getContentAsString();
+        assertEquals(requestBody, responseString);
+    }
+}
