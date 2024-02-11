@@ -199,7 +199,7 @@ public class ArticlesControllerTests extends ControllerTestCase{
         verify(articlesRepository, times(1)).findById(eq(7L));
         Map<String, Object> json = responseToJson(response);
         assertEquals("EntityNotFoundException", json.get("type"));
-        assertEquals("UCSBDate with id 7 not found", json.get("message"));
+        assertEquals("Articles with id 7 not found", json.get("message"));
     }
 
     // Tests for PUT /api/articles?id=... 
