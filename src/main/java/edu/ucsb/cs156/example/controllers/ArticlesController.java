@@ -47,7 +47,7 @@ public class ArticlesController extends ApiController{
         return articles;
     }
 
-    @Operation(summary= "Create a new date")
+    @Operation(summary= "Create a new article")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public Articles postArticles(
