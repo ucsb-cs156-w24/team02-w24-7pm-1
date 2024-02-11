@@ -106,4 +106,16 @@ public class ArticlesController extends ApiController{
 
         return article;
     }
+    
+    @Operation(summary= "Delete an Article")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("")
+    public Object deleteArticle(
+            @Parameter(name="id") @RequestParam Long id) {
+        Articles article = articlesRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
+
+        articlesRepository.delete(article);
+        return genericMessage("Articles with id %s deleted".formatted(id));
+    }
 }
