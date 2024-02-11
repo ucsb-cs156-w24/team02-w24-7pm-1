@@ -47,7 +47,7 @@ import java.time.LocalDateTime;
 <span class="fc" id="L47">        return articles;</span>
     }
 
-    @Operation(summary= &quot;Create a new date&quot;)
+    @Operation(summary= &quot;Create a new article&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PostMapping(&quot;/post&quot;)
     public Articles postArticles(
