@@ -1,0 +1,61 @@
+{ "databaseChangeLog": [
+    {
+        "changeSet": {
+          "id": "UCSBOrganization-11",
+          "author": "GretchenL",
+          "preConditions": [
+            {
+              "onFail": "MARK_RAN"
+            },
+            {
+              "not": [
+                {
+                  "tableExists": {
+                    "tableName": "UCSBORGANIZATION"
+                  }
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "createTable": {
+                "columns": [
+                  {
+                    "column": {
+                      "name": "ORG_CODE",
+                      "type": "VARCHAR(255)",
+                      "constraints": {
+                        "primaryKey": true,
+                        "primaryKeyName": "CONSTRAINT_ORGANIZATION11"
+                      }
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "ORG_TRANSLATION_SHORT",
+                      "type": "VARCHAR(255)"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "ORG_TRANSLATION",
+                      "type": "VARCHAR(255)"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "INACTIVE",
+                      "type": "BOOLEAN",
+                      "constraints": {
+                        "nullable": false
+                      }
+                    }
+                  }]
+                ,
+                "tableName": "UCSBORGANIZATION"
+              }
+            }]
+        }
+      }
+  ]}
