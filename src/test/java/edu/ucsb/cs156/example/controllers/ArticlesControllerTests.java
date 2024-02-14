@@ -171,7 +171,7 @@ public class ArticlesControllerTests extends ControllerTestCase{
                 when(articlesRepository.findById(eq(7L))).thenReturn(Optional.of(article));
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/ucsbdates?id=7"))
+                MvcResult response = mockMvc.perform(get("/api/articles?id=7"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
