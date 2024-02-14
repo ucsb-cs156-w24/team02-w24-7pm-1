@@ -171,7 +171,7 @@ public class ArticlesControllerTests extends ControllerTestCase{
         when(articlesRepository.findById(eq(7L))).thenReturn(Optional.of(article));
 
         // act
-        MvcResult response = mockMvc.perform(get("/api/ucsbdates?id=7"))
+        MvcResult response = mockMvc.perform(get("/api/articles?id=7"))
                         .andExpect(status().isOk()).andReturn();
 
         // assert
@@ -250,7 +250,7 @@ public class ArticlesControllerTests extends ControllerTestCase{
 
     @WithMockUser(roles = { "ADMIN", "USER" })
     @Test
-    public void admin_cannot_edit_ucsbdate_that_does_not_exist() throws Exception {
+    public void admin_cannot_edit_article_that_does_not_exist() throws Exception {
             // arrange
 
             LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
@@ -315,5 +315,25 @@ public class ArticlesControllerTests extends ControllerTestCase{
         Map<String, Object> json = responseToJson(response);
         assertEquals("Articles with id 15 deleted", json.get("message"));
     }
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_tries_to_delete_non_existant_article_and_gets_right_error_message()
+                        throws Exception {
+                // arrange
+
+                when(articlesRepository.findById(eq(15L))).thenReturn(Optional.empty());
+
+                // act
+                MvcResult response = mockMvc.perform(
+                                delete("/api/articles?id=15")
+                                                .with(csrf()))
+                                .andExpect(status().isNotFound()).andReturn();
+
+                // assert
+                verify(articlesRepository, times(1)).findById(15L);
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("Articles with id 15 not found", json.get("message"));
+        }
 }
 
