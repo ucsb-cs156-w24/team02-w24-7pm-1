@@ -17,9 +17,9 @@ public class UCSBDiningCommons {
   @Id
   private String code;
   private String name;
-  private Boolean hasSackMeal;
-  private Boolean hasTakeOutMeal;
-  private Boolean hasDiningCam;
+  private boolean hasSackMeal;
+  private boolean hasTakeOutMeal;
+  private boolean hasDiningCam;
   private Double latitude;
   private Double longitude;
 }
