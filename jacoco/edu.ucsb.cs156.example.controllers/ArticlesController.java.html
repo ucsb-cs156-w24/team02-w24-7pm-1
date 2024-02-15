@@ -86,6 +86,37 @@ import java.time.LocalDateTime;
 <span class="fc" id="L86">        return articles;</span>
     }
 
+    @Operation(summary= &quot;Update a single article&quot;)
+    @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
+    @PutMapping(&quot;&quot;)
+    public Articles updateArticle(
+            @Parameter(name=&quot;id&quot;) @RequestParam Long id,
+            @RequestBody @Valid Articles incoming) {
 
+<span class="fc" id="L96">        Articles article = articlesRepository.findById(id)</span>
+<span class="fc" id="L97">                .orElseThrow(() -&gt; new EntityNotFoundException(Articles.class, id));</span>
+
+<span class="fc" id="L99">        article.setTitle(incoming.getTitle());</span>
+<span class="fc" id="L100">        article.setUrl(incoming.getUrl());</span>
+<span class="fc" id="L101">        article.setExplanation(incoming.getExplanation());</span>
+<span class="fc" id="L102">        article.setEmail(incoming.getEmail());</span>
+<span class="fc" id="L103">        article.setDateAdded(incoming.getDateAdded());</span>
+
+<span class="fc" id="L105">        articlesRepository.save(article);</span>
+
+<span class="fc" id="L107">        return article;</span>
+    }
+    
+    @Operation(summary= &quot;Delete an Article&quot;)
+    @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
+    @DeleteMapping(&quot;&quot;)
+    public Object deleteArticle(
+            @Parameter(name=&quot;id&quot;) @RequestParam Long id) {
+<span class="fc" id="L115">        Articles article = articlesRepository.findById(id)</span>
+<span class="fc" id="L116">                .orElseThrow(() -&gt; new EntityNotFoundException(Articles.class, id));</span>
+
+<span class="fc" id="L118">        articlesRepository.delete(article);</span>
+<span class="fc" id="L119">        return genericMessage(&quot;Articles with id %s deleted&quot;.formatted(id));</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
