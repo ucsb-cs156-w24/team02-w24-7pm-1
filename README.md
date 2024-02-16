@@ -12,7 +12,6 @@ Instructions: <https://ucsb-cs156.github.io/w24/lab/team02.html>
 | `HelpRequest`               | Daoyi        | Daoyijiucsb   |
 | `Articles`                  | Liam         | liamlizard    |
 ```
-
 Deployments:
 
 * Prod: <https://team02.dokku-13.cs.ucsb.edu>
