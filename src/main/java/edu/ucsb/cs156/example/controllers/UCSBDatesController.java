@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UCSBDatesController extends ApiController {
 
     @Autowired
-    UCSBDateRepository ucsbDateRepository;
+    UCSBDateRepository ucsbDateRepository; // comment
 
     @Operation(summary= "List all ucsb dates")
     @PreAuthorize("hasRole('ROLE_USER')")
